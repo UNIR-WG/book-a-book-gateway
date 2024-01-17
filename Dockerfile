@@ -16,5 +16,9 @@ RUN mvn clean package
 # Marcamos el punto de arranque de la imagen con el comando "java -jar app.jar" que ejecutará nuestro componente.
 FROM openjdk:17
 EXPOSE 8762
-COPY --from=build /target/gateway-filters-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /target/book-a-book-gateway.jar app.jar
+
+# Set the application profile in order to change the config of DB location
+ENV spring_profiles_active=prod
+
 ENTRYPOINT ["java", "-jar", "/app.jar"]

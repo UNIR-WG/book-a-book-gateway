@@ -1,10 +1,7 @@
 package com.unir.gateway.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.LinkedMultiValueMap;
@@ -46,4 +43,16 @@ public class GatewayRequest {
      */
     @JsonIgnore
     private HttpHeaders headers;
+
+
+    @Override
+    public String toString() {
+        return "GatewayRequest{" +
+                "targetMethod=" + targetMethod +
+                ", queryParams=" + queryParams +
+                ", body=" + body +
+                ", exchange=" + exchange +
+                ", headers=" + headers +
+                '}';
+    }
 }

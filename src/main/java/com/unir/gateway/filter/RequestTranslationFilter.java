@@ -57,13 +57,16 @@ public class RequestTranslationFilter implements GlobalFilter {
             log.info("Request does not have a content type or is not a POST request");
             return exchange.getResponse().setComplete();
         } else {
-            return DataBufferUtils.join(exchange.getRequest().getBody())
-                    .flatMap(dataBuffer -> {
+            return DataBufferUtils
+                    .join(exchange.getRequest().getBody())
+                    .flatMap(dataBuffer ->
+                    {
                         GatewayRequest request = requestBodyExtractor.getRequest(exchange, dataBuffer);
                         ServerHttpRequest mutatedRequest = requestDecoratorFactory.getDecorator(request);
                         //RouteToRequestUrlFilter writes the URI to the exchange attributes *before* any global filters run.
                         exchange.getAttributes().put(ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR, mutatedRequest.getURI());
                         log.info("Proxying request: {} {}", mutatedRequest.getMethod(), mutatedRequest.getURI());
+
                         return chain.filter(exchange.mutate().request(mutatedRequest).build());
                     });
         }

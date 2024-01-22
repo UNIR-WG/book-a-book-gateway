@@ -8,7 +8,7 @@
 		<relativePath />
 	</parent>
 	<groupId>net.unir.missi.desarrollowebfullstack.bookabook</groupId>
-	<artifactId>gateway-filters</artifactId>
+	<artifactId>gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gateway</name>
 	<description>Gateway o Proxy Inverso con filtros</description>

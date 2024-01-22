@@ -13,6 +13,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.logging.Logger;
 
 /**
  * This class is responsible for extracting the body of the request and converting it into a GatewayRequest object.
@@ -46,12 +47,16 @@ public class RequestBodyExtractor {
         GatewayRequest request = objectMapper.readValue(rawRequest, GatewayRequest.class);
         request.setExchange(exchange);
 
+        Logger.getGlobal().info(request.toString());
+
         // Set headers -- Needed: https://github.com/spring-cloud/spring-cloud-gateway/issues/894
         HttpHeaders headers = new HttpHeaders();
         headers.putAll(exchange.getRequest().getHeaders());
         headers.remove(HttpHeaders.CONTENT_LENGTH);
         headers.set(HttpHeaders.TRANSFER_ENCODING, "chunked");
         request.setHeaders(headers);
+        Logger.getGlobal().info(request.toString());
+
         return request;
     }
 

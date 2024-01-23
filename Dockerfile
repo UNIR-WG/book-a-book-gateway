@@ -15,7 +15,7 @@ RUN mvn clean package
 # Copiamos desde "build" el JAR generado (la ruta de generacion es la misma que veriamos en local) y lo movemos y renombramos en destino como 
 # Marcamos el punto de arranque de la imagen con el comando "java -jar app.jar" que ejecutará nuestro componente.
 FROM openjdk:17
-EXPOSE 8762
+EXPOSE 8763
 COPY --from=build /target/book-a-book-gateway.jar app.jar
 
 # Set the application profile in order to change the config of DB location

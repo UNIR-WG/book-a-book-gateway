@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.logging.Logger;
 
-@RestController
+/*@RestController
 public class HelloWorldController {
 
     @GetMapping("/hello")
@@ -31,3 +31,4 @@ public class HelloWorldController {
         }
     }
 }
+*/

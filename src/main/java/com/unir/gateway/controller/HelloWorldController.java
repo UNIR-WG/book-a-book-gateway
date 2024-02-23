@@ -19,4 +19,15 @@ public class HelloWorldController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @GetMapping("/")
+    public ResponseEntity<String> hello()
+    {
+        try {
+            return ResponseEntity.ok("Hello World from root gateway!");
+        } catch (Exception e) {
+            Logger.getGlobal().warning("Error saying hello from root gateway" + e.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
